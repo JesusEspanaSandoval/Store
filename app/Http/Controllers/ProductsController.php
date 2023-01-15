@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -61,7 +62,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -71,9 +72,13 @@ class ProductsController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $this->authorize('delete', $product);
+        $data = $request->validated();
+        ($request->hasFile('product_picture'))? $data['product_picture'] = $request->file('product_picture')->store('products', 'public') : $data['product_picture'] = $product->product_picture;
+        $product->update($data);
+        return redirect('home');
     }
 
     /**
