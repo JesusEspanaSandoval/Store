@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -51,7 +51,7 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -90,6 +90,7 @@ class ProductsController extends Controller
     public function destroy(Product $product)
     {
         $this->authorize('delete', $product);
+        Storage::delete("public/$product->product_picture");
         $product->delete();
         return redirect('home');
     }
