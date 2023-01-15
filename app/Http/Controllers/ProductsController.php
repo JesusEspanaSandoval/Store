@@ -37,7 +37,7 @@ class ProductsController extends Controller
     public function store(StoreProductRequest $request)
     {
         $data = $request->validated();
-        $data["product_picture"] = $request->file('product_picture')->store('products');
+        $data["product_picture"] = $request->file('product_picture')->store('products', 'public');
         auth()->user()->products()->create($data);
         return redirect('home');
     }
@@ -84,6 +84,8 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $this->authorize('delete', $product);
+        $product->delete();
+        return redirect('home');
     }
 }
