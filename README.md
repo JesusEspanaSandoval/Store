@@ -15,9 +15,10 @@ DB_DATABASE=eComerce
 DB_USERNAME=[Your username]
 DB_PASSWORD=[The password of your user]
 ```
-Migrate
+Migrate and generate the key
 ``` bash
 php artisan migrate
+php artisan key:generate
 ```
 Finally you can start the project
 ``` bash
