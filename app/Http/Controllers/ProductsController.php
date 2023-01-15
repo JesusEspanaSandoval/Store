@@ -62,6 +62,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
+        $this->authorize('delete', $product);
         return view('products.edit', compact('product'));
     }
 
@@ -74,9 +75,8 @@ class ProductsController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $this->authorize('delete', $product);
         $data = $request->validated();
-        ($request->hasFile('product_picture'))? $data['product_picture'] = $request->file('product_picture')->store('products', 'public') : $data['product_picture'] = $product->product_picture;
+        ($request->hasFile('product_picture')) ? $data['product_picture'] = $request->file('product_picture')->store('products', 'public') : $data['product_picture'] = $product->product_picture;
         $product->update($data);
         return redirect('home');
     }
