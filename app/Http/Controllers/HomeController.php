@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', ['products' => auth()->user()->products()->limit(4)->get()]);
+        return view('home', ['products' => auth()->user()->products()->take(3)->get()]);
     }
 }
