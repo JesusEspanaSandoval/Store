@@ -30,8 +30,8 @@
                 <label for="description" class="col-md-4 col-form-label text-md-end">Description</label>
 
                 <div class="col-md-6">
-                  <input id="description" type="text" class="form-control @error('description') is-invalid @enderror"
-                    name="description" value="{{ old('description') }}" autocomplete="description">
+                  <textarea id="description" class="form-control @error('description') is-invalid @enderror" style="resize: none"
+                    name="description" value="{{ old('description') }}" rows="5" autocomplete="description"></textarea>
 
                   @error('description')
                     <span class="invalid-feedback" role="alert">
@@ -60,8 +60,8 @@
                 <label for="product_picture" class="col-md-4 col-form-label text-md-end">Product picture</label>
 
                 <div class="col-md-6">
-                  <input id="product_picture" type="file" class="form-control @error('product_picture') is-invalid @enderror"
-                    name="product_picture">
+                  <input id="product_picture" type="file"
+                    class="form-control @error('product_picture') is-invalid @enderror" name="product_picture">
 
                   @error('product_picture')
                     <span class="invalid-feedback" role="alert">

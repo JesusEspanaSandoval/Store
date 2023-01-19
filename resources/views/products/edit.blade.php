@@ -31,9 +31,8 @@
                 <label for="description" class="col-md-4 col-form-label text-md-end">Description</label>
 
                 <div class="col-md-6">
-                  <input id="description" type="text" class="form-control @error('description') is-invalid @enderror"
-                    name="description" value="{{ old('description') ?? $product->description }}"
-                    autocomplete="description">
+                  <textarea id="description" class="form-control @error('description') is-invalid @enderror" style="resize: none"
+                    name="description" rows="5" autocomplete="description">{{ old('description') ?? $product->description }}</textarea>
 
                   @error('description')
                     <span class="invalid-feedback" role="alert">
