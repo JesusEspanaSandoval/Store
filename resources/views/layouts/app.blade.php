@@ -15,12 +15,12 @@
   <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
   <!-- Scripts -->
-  @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+  @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
   <div id="app">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm vw-100">
       <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
           {{ config('app.name', 'Laravel') }}
