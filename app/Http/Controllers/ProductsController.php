@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
@@ -16,7 +17,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return view('products.index', ['products' => auth()->user()->products()->paginate(6)]);
+        return view('products.index', ['products' => auth()->user()->products()->paginate(5)]);
     }
 
     /**
@@ -93,5 +94,16 @@ class ProductsController extends Controller
         Storage::delete("public/$product->product_picture");
         $product->delete();
         return redirect('home');
+    }
+
+    /**
+     * Search a product
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        return response()->json(Product::query()->where('name', $request->validate()['name'])->get());
     }
 }

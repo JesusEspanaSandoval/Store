@@ -4,7 +4,7 @@
   <div class="container">
     <div>
       @if (count($products) != 0)
-        <h1 class="text-center fw-bold mt-2">Your last products</h1>
+        <h1 class="text-center fw-bold">Your last products</h1>
       @endif
       <div class="d-flex flex-wrap align-items-center justify-content-center m-2">
         @forelse ($products as $product)

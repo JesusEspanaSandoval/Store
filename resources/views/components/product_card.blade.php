@@ -19,7 +19,7 @@
       </a>
       ${{ $product->price }}
     </h5>
-    <p class="card-text">{{ $product->description }}</p>
+    <p class="card-text text-truncate">{{ $product->description }}</p>
     @if ($product->user_id == auth()->user()->id)
       <form method="post" action="{{ route('products.destroy', $product->id) }}" class="d-flex align-items-center">
         @csrf

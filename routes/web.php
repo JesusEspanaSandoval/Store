@@ -20,5 +20,6 @@ Route::get('/', fn () => (auth()->check()) ? redirect('home') : view('welcome'))
 Auth::routes();
 
 Route::resource('products', ProductsController::class);
+Route::post('/products/search', [ProductsController::class, 'search'])->name('products.search');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
