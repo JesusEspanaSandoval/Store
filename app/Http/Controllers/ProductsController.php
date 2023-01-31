@@ -77,7 +77,10 @@ class ProductsController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         $data = $request->validated();
-        ($request->hasFile('product_picture')) ? $data['product_picture'] = $request->file('product_picture')->store('products', 'public') : $data['product_picture'] = $product->product_picture;
+        if ($request->hasFile('product_picture')) {
+            Storage::delete("public/$product->product_picture");
+            $data['product_picture'] = $request->file('product_picture')->store('products', 'public');
+        }
         $product->update($data);
         return redirect('home');
     }
@@ -99,11 +102,11 @@ class ProductsController extends Controller
     /**
      * Search a product
      * 
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request)
     {
-        return response()->json(Product::query()->where('name', $request->validate()['name'])->get());
+        return view('products.search', ['products' => Product::query()->where('name', 'like', "{$request->input("name")}%")->get()]);
     }
 }

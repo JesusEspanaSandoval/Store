@@ -20,7 +20,7 @@
 
 <body>
   <div id="app">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm vw-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm vw-100">
       <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
           {{ config('app.name', 'Laravel') }}
@@ -82,6 +82,11 @@
                   </form>
                 </div>
               </li>
+
+              <form class="d-flex w-auto" role="search" action="{{ route('products.search') }}" method="POST">
+                <input class="form-control me-2" name="name" type="search" placeholder="Search" aria-label="Search" />
+                <button class="btn btn-success d-block d-lg-none" type="submit">Search</button>
+              </form>
             @endguest
           </ul>
         </div>

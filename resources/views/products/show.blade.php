@@ -58,6 +58,15 @@
       @else
         <a class="btn btn-success">Buy</a>
       @endif
+      <small class="text-muted">
+        @if ($product->created_at == $product->updated_at)
+          Created at
+          {{ date('M j, Y', strtotime($product->created_at)) }}
+        @else
+          Last updated in
+          {{ date('M j, Y', strtotime($product->updated_at)) }}
+        @endif
+      </small>
     </div>
   </div>
 @endsection

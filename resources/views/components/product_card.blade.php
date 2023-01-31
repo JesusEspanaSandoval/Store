@@ -10,8 +10,8 @@
     }
   }
 </style>
-<div class="card m-2" style="width: 18rem;">
-  <img src="/storage/{{ $product->product_picture }}" class="card-img-top align-self-center">
+<div class="card m-2 overflow-hidden" style="width: 18rem;">
+  <img src="/storage/{{ $product->product_picture }}" class="card-img-top rounded-0 align-self-center">
   <div class="card-body">
     <h5 class="card-title">
       <a class="text-decoration-none text-white" href="{{ route('products.show', $product->id) }}">
@@ -30,9 +30,16 @@
     @else
       <a class="btn btn-success">Buy</a>
     @endif
-    <p class="card-text"><small class="text-muted">
-        Last updated in
-        {{ date('M j, Y', strtotime($product->updated_at)) }}</small>
+    <p class="card-text">
+      <small class="text-muted">
+        @if ($product->created_at == $product->updated_at)
+          Created at
+          {{ date('M j, Y', strtotime($product->created_at)) }}
+        @else
+          Last updated in
+          {{ date('M j, Y', strtotime($product->updated_at)) }}
+        @endif
+      </small>
     </p>
   </div>
 </div>
