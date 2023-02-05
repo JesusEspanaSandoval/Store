@@ -76,8 +76,17 @@
                              document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}
                   </a>
+                  <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                             document.getElementById('delete-account-form').submit();
+                             document.getElementById('logout-form').submit();">
+                    Delete account
+                  </a>
 
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                  </form>
+                  <form id="delete-account-form" action="{{ route('delete-account') }}" method="GET" class="d-none">
                     @csrf
                   </form>
                 </div>

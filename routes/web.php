@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductsController;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn () => (auth()->check()) ? redirect('home') : view('welcome'));
+Route::get('/', fn () => (auth()->check()) ? redirect('home') : view('welcome'))->name("welcome");
 
 Auth::routes();
 
+Route::get('/delete-account', function () {
+  User::query()->where("id", "=", auth()->id())->delete();
+  return redirect()->route('welcome');
+})->name('delete-account');
 Route::post('/products/search/', [ProductsController::class, 'search'])->name('products.search');
 Route::resource('products', ProductsController::class);
 
