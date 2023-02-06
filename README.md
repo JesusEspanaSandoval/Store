@@ -30,6 +30,14 @@ php artisan storage:link
 
 Finally you can start the project
 
+Without Sail
+
 ```bash
 php artisan serve & pnpm dev
+```
+
+With Sail
+
+```bash
+sail up & pnpm dev
 ```
