@@ -10,7 +10,7 @@
 @section('content')
   <div class="position-absolute d-flex flex-column justify-content-center align-items-center top-0"
     style="height: 100vh; width: 100vw;">
-    <h1 class="fw-bold text-center">Welcome to my eComerce</h1>
+    <h1 class="fw-bold text-center">Welcome to my store</h1>
     <a href="{{ route('register') }}" class="btn btn-primary btn-lg">Get started</a>
   </div>
 @endsection
